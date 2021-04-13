@@ -39,6 +39,8 @@ class FingerprintImageEnhancer(object):
         self._binim = []
 
     def __normalise(self, img, mean, std):
+        if(np.std(img) == 0):
+            raise ValueError("Image standard deviation is 0. Please review image again")
         normed = (img - np.mean(img)) / (np.std(img))
         return (normed)
 
